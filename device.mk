@@ -135,6 +135,22 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     camera.msm8937
 
+# GContacts
+PRODUCT_PACKAGES += \
+    GContacts
+
+# GDeskClock
+PRODUCT_PACKAGES += \
+    GDeskClock
+
+# GDialer
+PRODUCT_PACKAGES += \
+    GDialer
+
+# GMessaging
+PRODUCT_PACKAGES += \
+    GMessaging
+
 PRODUCT_PACKAGES += \
     camera.device@1.0-impl \
     camera.device@3.2-impl \
@@ -392,6 +408,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
     $(DEVICE_PATH)/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
+
 
 # Xiaomi Parts
 PRODUCT_PACKAGES += \
