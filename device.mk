@@ -134,7 +134,6 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     camera.msm8937
 
-
 PRODUCT_PACKAGES += \
     camera.device@1.0-impl \
     camera.device@3.2-impl \
@@ -365,6 +364,10 @@ PRODUCT_PACKAGES += \
     libxml2 \
     telephony-ext
 
+# Snap
+PRODUCTS_PACKAGES += \
+    Snap
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
@@ -378,10 +381,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
     $(DEVICE_PATH)/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
-
-# Snap
-PRODUCT_PACKAGES += \
-    Snap
 
 # TextClassifier smart selection model files
 PRODUCT_PACKAGES += \
