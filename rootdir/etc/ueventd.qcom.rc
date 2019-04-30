@@ -48,6 +48,8 @@
 /dev/ipaNatTable          0660   radio      radio
 /dev/rmnet_ctrl           0660   usb        usb
 /dev/dpl_ctrl             0660   usb        usb
+/dev/ipa_odl_ctl          0660   radio      radio
+/dev/ipa_adpl             0660   system     oem_2905
 
 #permissions for CSVT
 /dev/smd11                0660   radio      radio
@@ -118,6 +120,7 @@
 /dev/media*               0660   system     camera
 /dev/v4l-subdev*          0660   system     camera
 /dev/qseecom              0660   system     drmrpc
+/dev/qce                  0660   system     drmrpc
 /dev/smcinvoke            0660   system     system
 /dev/qsee_ipc_irq_spss    0660   system     drmrpc
 /dev/seemplog             0660   system     system

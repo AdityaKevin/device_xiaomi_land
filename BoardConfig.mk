@@ -42,6 +42,8 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78B0000
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware_mnt/image
+BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE :=  2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --second_offset 0x00f00000 --tags_offset 0x00000100
@@ -166,10 +168,6 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USES_MKE2FS := true
-BOARD_ROOT_EXTRA_SYMLINKS := \
-    /dsp:/vendor/dsp \
-    /firmware:/vendor/firmware_mnt \
-    /persist:/mnt/vendor/persist
 
 # FM
 BOARD_HAVE_QCOM_FM := true
@@ -180,6 +178,8 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 USE_DEVICE_SPECIFIC_GPS := true
 
 # HIDL
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/vendor_framework_compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/compatibility_matrix.xml
 
@@ -197,6 +197,10 @@ TARGET_PROVIDES_LIBLIGHT := true
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
+BOARD_ROOT_EXTRA_SYMLINKS := \
+    /vendor/dsp:/dsp \
+    /vendor/firmware_mnt:/firmware \
+    /mnt/vendor/persist:/persist
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26301931008
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
@@ -240,6 +244,8 @@ BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+PRODUCT_VENDOR_MOVE_ENABLED := true
+TARGET_DISABLE_WCNSS_CONFIG_COPY := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
