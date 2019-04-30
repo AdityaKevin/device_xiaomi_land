@@ -363,7 +363,7 @@ PRODUCT_COPY_FILES += \
 
 # Snap
 PRODUCT_PACKAGES += \
-    CameraMod
+    Snap
 
 # TextClassifier smart selection model files
 PRODUCT_PACKAGES += \
