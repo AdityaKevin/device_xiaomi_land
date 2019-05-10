@@ -1,0 +1,10 @@
+allow init { domain -lmkd -crash_dump }:process noatsecure;
+allow init init:socket { write read };
+allow init proc:file { read write open getattr };
+allow init sysfs_devices_system_cpu:file { write };
+allow init device:chr_file { ioctl write open };
+allow init sysfs:file { write open read };
+allow init sysfs_wake_lock:file { write open };
+allow init init:capability2 { block_suspend };
+allow init init:netlink_kobject_uevent_socket { read };
+allow init sysfs_devices_system_cpu:file { write };

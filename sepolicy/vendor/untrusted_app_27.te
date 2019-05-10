@@ -1,0 +1,16 @@
+allow untrusted_app_27 vendor_file:file { read open getattr };
+allow untrusted_app_27 bluetooth_prop:file { read };
+allow untrusted_app_27 bootloader_boot_reason_prop:file { read };
+allow untrusted_app_27 boottime_prop:file { read };
+allow untrusted_app_27 ctl_bootanim_prop:file { read };
+allow untrusted_app_27 ctl_bugreport_prop:file { read };
+allow untrusted_app_27 ctl_start_prop:file { read };
+allow untrusted_app_27 ctl_stop_prop:file { read };
+allow untrusted_app_27 device_logging_prop:file { read };
+allow untrusted_app_27 dumpstate_options_prop:file { read };
+allow untrusted_app_27 logpersistd_logging_prop:file { read };
+allow untrusted_app_27 mmc_prop:file { read };
+allow untrusted_app_27 net_dns_prop:file { read };
+allow untrusted_app_27 netd_stable_secret_prop:file { read };
+allow untrusted_app_27 overlay_prop:file { read };
+allow untrusted_app_27 hal_memtrack_default:binder { call };
