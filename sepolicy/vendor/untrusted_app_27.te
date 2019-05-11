@@ -14,3 +14,7 @@ allow untrusted_app_27 net_dns_prop:file { read };
 allow untrusted_app_27 netd_stable_secret_prop:file { read };
 allow untrusted_app_27 overlay_prop:file { read };
 allow untrusted_app_27 hal_memtrack_default:binder { call };
+
+
+get_prop(untrusted_app_27, bg_boot_complete_prop)
+get_prop(untrusted_app_27, bg_daemon_prop)

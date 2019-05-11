@@ -1,2 +1,6 @@
 # Rmt
 genfscon debugfs /rmt_storage	u:object_r:debugfs_rmt:s0
+genfscon sysfs /devices/soc/qpnp-rtc-7/rtc
+
+#PowerHal
+genfscon sysfs /bus/msm_subsys

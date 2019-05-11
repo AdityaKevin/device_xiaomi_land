@@ -7,12 +7,13 @@ type_transition mm-qcamerad system_data_file:sock_file camera_socket "cam_socket
 allow mm-qcamerad camera_data_file:sock_file { create unlink };
 allow mm-qcamerad camera_socket:sock_file { create unlink write };
 
-allow mm-qcamerad init:unix_stream_socket connectto;
-allow mm-qcamerad property_socket:sock_file write;
-allow mm-qcamerad default_prop:property_service { set };
-allow mm-qcamerad sensorservice_service:service_manager find;
-allow mm-qcamerad { sysfs sysfs_graphics }:file r_file_perms;
-allow mm-qcamerad system_server:unix_stream_socket rw_socket_perms;
+allow mm-qcamerad init:unix_stream_socket connectto; allow mm-qcamerad 
+property_socket:sock_file write; allow mm-qcamerad default_prop:property_service { 
+set }; allow mm-qcamerad sensorservice_service:service_manager find; allow 
+mm-qcamerad { sysfs sysfs_graphics }:file r_file_perms; allow mm-qcamerad 
+system_server:unix_stream_socket rw_socket_perms;
+allow mm-qcamerad diag_device:chr_file rw_file_perms;
+allow mm-qcamerad persist_file:dir r_dir_perms;
 
 typeattribute mm-qcamerad binder_in_vendor_violators;
 allow mm-qcamerad binder_device:chr_file { read write };
