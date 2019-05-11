@@ -8,3 +8,7 @@ allow init sysfs_wake_lock:file { write open };
 allow init init:capability2 { block_suspend };
 allow init init:netlink_kobject_uevent_socket { read };
 allow init sysfs_devices_system_cpu:file { write };
+allow init sensors:process { noatsecure };
+allow init vendor_file:file { execute };
+allow init time_daemon:process { noatsecure };
+allow init hal_camera_default:process { noatsecure };
