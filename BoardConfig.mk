@@ -41,7 +41,6 @@ TARGET_USES_64_BIT_BINDER := true
 # kernel
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78B0000
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware_mnt/image
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
@@ -177,9 +176,9 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 USE_DEVICE_SPECIFIC_GPS := true
 
 # Hals
-TARGET_QCOM_MEDIA_VARIANT := caf-msm8937
-TARGET_QCOM_DISPLAY_VARIANT := caf-msm8937
-TARGET_QCOM_AUDIO_VARIANT := caf-msm8937
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8996
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8996
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8996
 
 PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom/display-$(TARGET_QCOM_DISPLAY_VARIANT) \
@@ -234,9 +233,10 @@ TARGET_RIL_VARIANT := caf
 VENDOR_SECURITY_PATCH := 2019-01-05
 
 # SELinux
-#include device/qcom/sepolicy/sepolicy.mk
-#BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
-#BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/private
+BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy/vendor
+SELINUX_IGNORE_NEVERALLOWS := true
 
 # Treble
 ENABLE_VENDOR_IMAGE := true
