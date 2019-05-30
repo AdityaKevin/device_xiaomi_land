@@ -1,1 +1,1 @@
-add_lunch_combo aosip_land-userdebug
+add_lunch_combo nitrogen_land-userdebug
