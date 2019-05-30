@@ -58,7 +58,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.display.lmax=1280x720 \
     camera.display.umax=1920x1080 \
-    camera.hal1.packagelist=com.skype.raider,com.google.android.talk \
     persist.camera.gyro.android=1 \
     persist.camera.is_type=1 \
     vendor.vidc.enc.narrow.searchrange=1 \
@@ -220,3 +219,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
+
+# HAL3
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.HAL3.enabled=1
+
+# Hal1 Apps
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.camera.hal1.packagelist=com.whatsapp,com.intsig.camscanner,com.instagram.android,com.snapchat.android
+
