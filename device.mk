@@ -141,7 +141,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     vendor.qti.hardware.camera.device@1.0 \
-    vendor.qti.hardware.camera.device@1.0_vendor
+    vendor.qti.hardware.camera.device@1.0_vendor \
+    libxml2
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -386,10 +387,6 @@ PRODUCT_COPY_FILES += \
 # Xiaomi Parts
 PRODUCT_PACKAGES += \
     XiaomiParts
-
-# Snap
-PRODUCT_PACKAGES += \
-    Snap
 
 # TextClassifier smart selection model files
 PRODUCT_PACKAGES += \
