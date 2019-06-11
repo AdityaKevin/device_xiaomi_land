@@ -38,6 +38,9 @@ TARGET_DENSITY := xhdpi
 # Inherit from our common CAF device tree.
 include device/qcom/common/common.mk
 
+# Inherit from custom vendor
+$(call inherit-product, vendor/MiuiCamera/config.mk)
+
 PRODUCT_BRAND := Xiaomi
 PRODUCT_DEVICE := land
 PRODUCT_MODEL := Redmi 3S
