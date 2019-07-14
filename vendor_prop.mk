@@ -58,11 +58,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.display.lmax=1280x720 \
     camera.display.umax=1920x1080 \
-    camera.hal1.packagelist=com.skype.raider,com.google.android.talk \
-    persist.camera.gyro.android=1 \
-    persist.camera.is_type=1 \
+    vendor.camera.hal1.packagelist=com.whatsapp,com.intsig.camscanner,com.instagram.android,com.snapchat.android \
+    persist.vendor.camera.gyro.android=1 \
+    persist.vendor.camera.is_type=1 \
     vendor.vidc.enc.narrow.searchrange=1 \
     persist.vendor.qti.telephony.vt_cam_interface=1
+    persist.vendor.camera.HAL3.enabled=1
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
