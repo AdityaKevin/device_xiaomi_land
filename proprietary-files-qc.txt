@@ -687,3 +687,8 @@ vendor/lib/libwfdmmservice.so
 vendor/lib/libwfdmodulehdcpsession.so
 vendor/lib64/libmmosal_proprietary.so
 vendor/lib64/libwfdhdcpcp.so
+
+# Hardware Camera.xml
+etc/permissions/android.hardware.camera.full.xml
+etc/permissions/android.hardware.camera.raw.xml
+
