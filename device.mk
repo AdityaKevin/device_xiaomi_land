@@ -133,7 +133,8 @@ PRODUCT_BOOT_JARS += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8937
+    camera.msm8937 \
+    SnapdragonCamera2
 
 PRODUCT_PACKAGES += \
     camera.device@1.0-impl \
@@ -147,7 +148,7 @@ PRODUCT_PACKAGES += \
 # Configstore
 PRODUCT_PACKAGES += \
     android.hardware.configstore@1.0-service
-    
+
 # Consumerir
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
