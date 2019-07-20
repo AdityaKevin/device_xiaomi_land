@@ -464,3 +464,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
+PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+PRODUCT_CFI_INCLUDE_PATHS += \
+    hardware/qcom/wlan-caf/qcwcn/wpa_supplicant_8_lib
+
