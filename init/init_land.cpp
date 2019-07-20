@@ -1,5 +1,7 @@
 /*
-   Copyright (c) 2017, The LineageOS Project
+   Copyright (c) 2016, The CyanogenMod Project
+   Copyright (c) 2017, The XPerience Project
+   Copyright (c) 2018, The LineageOS Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -27,45 +29,115 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <fstream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/sysinfo.h>
-
+#include <android-base/file.h>
+#include <android-base/logging.h>
 #include <android-base/properties.h>
+#include <android-base/strings.h>
+#include <fcntl.h>
+#include <iostream>
+#include <sstream>
+#include <stdlib.h>
+#include <string>
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
+#include <sys/sysinfo.h>
+#include <android-base/logging.h>
 
+#include "log.h"
 #include "property_service.h"
-#include "vendor_init.h"
 
-static std::string board_id;
 
 using android::base::GetProperty;
 using android::init::property_set;
 
-void init_variant_properties(){
-    std::ifstream fin;
-    std::string buf;
+namespace android {
+namespace init {
 
+static std::string board_id;
+
+static void property_override(char const prop[], char const value[]) {
+    prop_info *pi;
+
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
+
+static bool is3GBram() {
+    struct sysinfo sys;
+    sysinfo(&sys);
+    return sys.totalram > 2048ull * 1024 * 1024;
+}
+
+static void import_kernel_cmdline_land(bool in_qemu,
+                           const std::function<void(const std::string&, const std::string&, bool)>& fn) {
+    std::string cmdline;
+    android::base::ReadFileToString("/proc/cmdline", &cmdline);
+    for (const auto& entry : android::base::Split(android::base::Trim(cmdline), " ")) {
+        std::vector<std::string> pieces = android::base::Split(entry, "=");
+        /* The board_id entry has two equal signs, so accept more than two pieces */
+        if (pieces.size() >= 2) { // original -> == 2
+            fn(pieces[0], pieces[1], in_qemu);
+        }
+    }
+}
+
+static void parse_cmdline_boardid(const std::string& key,
+        const std::string& value, bool for_emulator __attribute__((unused))) {
+    if (key.empty())
+        return;
+
+    /* Here our value is board_id:board_vol; we only want the first part */
+    if (key == "board_id") {
+        std::istringstream iss(value);
+        std::string token;
+        std::getline(iss, token, ':');
+        board_id = token;
+    }
+}
+
+static void set_ramconfig() {
+    if (is3GBram()) {
+        property_set("dalvik.vm.heapstartsize", "8m");
+        property_set("dalvik.vm.heapgrowthlimit", "288m");
+        property_set("dalvik.vm.heapsize", "768m");
+        property_set("dalvik.vm.heaptargetutilization", "0.75");
+        property_set("dalvik.vm.heapminfree", "512k");
+        property_set("dalvik.vm.heapmaxfree", "8m");
+    } else {
+        property_set("dalvik.vm.heapstartsize", "8m");
+        property_set("dalvik.vm.heapgrowthlimit", "192m");
+        property_set("dalvik.vm.heapsize", "512m");
+        property_set("dalvik.vm.heaptargetutilization", "0.75");
+        property_set("dalvik.vm.heapminfree", "2m");
+        property_set("dalvik.vm.heapmaxfree", "8m");
+    }
+}
+
+static void variant_properties() {
     std::string product = GetProperty("ro.product.name", "");
     if (product.find("land") == std::string::npos)
         return;
 
-    fin.open("/proc/cmdline");
-    while (std::getline(fin, buf, ' '))
-        if (buf.find("board_id") != std::string::npos)
-            break;
-    fin.close();
+    // Get board_id from cmdline
+    import_kernel_cmdline_land(false, parse_cmdline_boardid);
 
-    if (buf.find("S88537AB1") != std::string::npos) {
-        property_set("ro.product.model", "Redmi 3X");
-        property_set("ro.vendor.product.model", "Redmi 3X");
-    } else {
-        property_set("ro.product.model", "Redmi 3S");
-        property_set("ro.vendor.product.model", "Redmi 3X");
+    // Set board id
+    property_set("ro.product.wt.boardid", board_id.c_str());
+
+    // Set variant based on board_id
+    if (board_id == "S88537AB1") {
+        property_override("ro.product.model", "Redmi 3X");
+        property_override("ro.product.vendor.model", "Redmi 3X");
     }
 }
 
-void vendor_load_properties(){
-    init_variant_properties();
+void vendor_load_properties() {
+    set_ramconfig();
+    variant_properties();
 }
+
+}  // namespace init
+}  // namespace android
