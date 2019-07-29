@@ -176,6 +176,12 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service \
     android.hardware.configstore@1.0-service
 
+# OMNI Charger Images
+PRODUCT_PACKAGES += \
+    omni_charger_res_images \
+    animation.txt \
+    font_charger.png
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
