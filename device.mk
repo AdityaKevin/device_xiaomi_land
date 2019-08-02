@@ -329,6 +329,9 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.0 \
     android.hardware.secure_element@1.0
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/perf/perf-profile0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile0.conf
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
@@ -407,8 +410,8 @@ PRODUCT_PACKAGES += \
 
 # QCOM
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/powerhint.xml:system/etc/powerhint.xml \
-    $(DEVICE_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-qti.xml \
+    $(DEVICE_PATH)/configs/powerhint.xml:vendor/etc/powerhint.xml \
+    $(DEVICE_PATH)/configs/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
     $(DEVICE_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
 # Properties
