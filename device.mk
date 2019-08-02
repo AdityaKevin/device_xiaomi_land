@@ -357,14 +357,13 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    android.hardware.radio@1.1 \
+    android.hardware.radio.config@1.0 \
+    android.hardware.secure_element@1.0 \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-full \
-    libqdMetaData.system
-
-PRODUCT_PACKAGES += \
-    telephony-ext \
-    ims-ext-common
+    telephony-ext
 
 PRODUCT_BOOT_JARS += \
     telephony-ext
