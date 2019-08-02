@@ -199,7 +199,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
-    
+
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl
 
@@ -291,7 +291,7 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw  \
     libstagefright_soft_flacdec
-    
+
 PRODUCT_PACKAGES += \
     android.hardware.media.omx@1.0-impl
 

@@ -234,6 +234,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 # RIL
 PROTOBUF_SUPPORTED := true
 TARGET_RIL_VARIANT := caf
+TARGET_USES_OLD_MNC_FORMAT := true
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2019-01-05
@@ -243,6 +244,7 @@ include device/qcom/sepolicy/sepolicy.mk
 #BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 #BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 include vendor/omni/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_VERS := 28.0
 
 # Treble
 ENABLE_VENDOR_IMAGE := true
