@@ -228,3 +228,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.camera.hal1.packagelist=com.whatsapp,com.intsig.camscanner,com.instagram.android,com.snapchat.android
 
+# Enable FIFO scheduling for UI and Render threads by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.use_fifo_ui=1
